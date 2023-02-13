@@ -1,0 +1,23 @@
+//tipos de dato
+//Strings
+//Numeros
+//Colores
+//Booleans
+//Maps
+//Lists
+
+$var: quote(hola);
+$number: 20s;
+$color: darken(red,20);
+$boolean: false;
+$list: 1px solid red;
+$map:(
+    primario: red,
+    secundario:blue,
+    terciario:yellow
+);
+
+body{
+    background: type-of($map);
+    color: map-get($map, terciario);
+}

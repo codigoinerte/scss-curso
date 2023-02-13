@@ -1,0 +1,91 @@
+
+@import "config";
+@import "menu";
+
+
+
+$primar-color: red;
+
+$color:red;
+$size:200px;
+$width: 20px;
+$primar-color: blue !default;
+
+
+body{
+    padding-top: $size;
+
+    margin: $width;
+
+    color: $primar-color;
+}
+p{
+    $size: 20px;
+
+    padding-top: $size;
+
+    margin: $width;
+
+    width: calc(100% - #{$size});
+}
+
+.#{ $color }{
+    color: $color
+}
+
+.#{ $color }{
+    color: $color
+}
+
+.menu{
+    display: block;
+
+    &-item{
+        color: red;
+    }
+
+    font:{
+        size: 1em;
+        style:italic;
+        family:arial;
+    }
+
+    grid-template:{
+        columns:100px 100px;
+        rows:auto;
+    }
+}
+
+
+ul{
+    margin: 0;
+    li{
+        margin: 0;
+    }
+    a{
+        display: block;
+    }
+    span{
+        color: red;
+    }
+    animation:menu 1s;
+
+    
+    &:hover{
+        color: green;
+
+    }
+
+    &:before{
+        content: "EDteam";
+    }
+
+    @media screen and (min-width:640px) {
+        display: flex;
+    }
+    @keyframes menu {
+        to{
+            color: red;
+        }
+    }
+}

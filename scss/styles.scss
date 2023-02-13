@@ -1,0 +1,310 @@
+@import "components/base";
+@import "components/mixins/mixins";
+
+// @import "components/buttons";
+// @import "components/colors";
+
+//@extends
+
+// %button { //primer uso
+//     display: inline-block;
+//     margin: 1em 0;
+//     padding: .5em 1.5em;
+// }
+
+// .button{ //segundo uso
+//     display: inline-block;
+//     margin: 2em 0;
+//     padding: .5em 1.5em;
+//     span{   // no extender el hijo
+//         color: red;
+//         margin: 0
+//     }
+// }
+// // solo usar un nivel
+// .button-alert {
+//     @extend .button;
+//     background: red;
+//     color: #fff;
+   
+// }
+
+// .button:hover {
+//     transform: translateY(-5px);
+// }
+// .button:active{
+//     @extend .button:hover;
+// }
+
+// // Condicionales
+
+// $dev: false !default;
+
+// // $dev: true;
+
+// @if 5 < 3 {
+//     *{
+//         outline: 1px solid red;
+//     }
+// }
+
+// @else if 3  == 5 or 1 == 1 {
+
+//     *{
+//         display: block;
+//     }
+// }
+// @else
+
+// {
+//     *{
+//         color: green;
+//     }
+// }
+
+$buttons: true !default;
+// $colors: true !default;
+
+// $buttons: true;
+
+// @import "components/buttons";
+// @import "components/colors";
+
+
+// // Iteraciones
+
+// @for $i from 1 through 20{
+
+//     @if $i % 2 == 0 {
+//         .column-#{$i * 5}{
+//             // width: #{$i * 5}#{"%"};
+//             width: $i * 5%;
+//         }
+//     }
+// }
+
+// // each
+// $colors: red green blue;
+
+// @each $color in $colors{
+//     .button-#{$color}{
+//         background-color: $color;
+//     }
+// }
+
+
+// $colors: (
+//     primary: yellow,
+//     secondary: green,
+//     tertriary: blue
+// );
+
+// $breakpoints: (
+//     small: 360px,
+//     medium:640px,
+//     large:1024px,
+//     xlarge:1400
+// );
+
+// @each $key, $color in $colors{
+//     .alert-#{$key}{
+//         background-color: $color;
+//     }
+// }
+
+// $buttons: false;
+
+//los mixins con parametros sin variable por defecto, son requeridos
+//los mixins se podria tomar como una funcion que retorna lo que tenga descrito
+
+$button-colors:(
+    primary: blue,
+    secondary: yellow,
+    alert:red,
+    cta:orange,
+    error: pink
+);
+
+// map-get($mapa, $key)
+
+// @include button(primary, secondary, alert, cta, error);
+// @include button(map-keys($button-colors)...);
+
+
+// .menu{
+//     @include menu(li, a);
+// }
+
+// agregar contenido dentro del mixin
+// .menu{
+//     @include menu(1em){
+//         color: green;
+//         font-size: 2em;
+//         padding: 0px;
+//     };
+// }
+
+// mixin responsive
+// body{
+//     background: red;
+//     @include mq(400px){
+//         background: green;
+//     }
+//     @include mq(1000px){
+//         background: yellow;
+//     }
+// }
+
+// $breakpoints:(
+//      small: 320px,
+//      medium: 640px,
+//      large: 1024px,
+//      xlarge:1440px
+// );
+
+// body{
+//     background: red;
+//     @include mq(small){
+//         background: green;
+//     }
+//     @include mq(large){
+//         background: yellow;
+//     }
+//     @include mq(500px){
+//         background: yellow;
+//     }
+//     @include mq(345px){
+//         background: yellow;
+//     }
+// }
+/*
+    Functions
+*/
+// debe ser declarado en un archivo llamado functions
+
+// variable global
+$path : '/assets/img/';
+
+@function em($px, $base: 16px){
+    @if(type-of($px) == number and unit($px) == 'px'){
+        @return $px / $base * 1em;
+    }
+
+    @return null;
+        
+}
+@function img($imagen){
+    @return url($path + $imagen);
+}
+
+body{
+    font-size: em(21px);
+    background-image: img('imagen.jpg');
+}
+
+/*
+    Funciones de strings
+    quote($string)
+    unquiote($string)
+    str-length($string)
+    str-index($string,$value)
+*/
+
+$width:1px;
+$solid: solid;
+$color: red;
+
+$colors:(
+    primary: yellow
+);
+
+body{
+    border: unquote($width + ' ' + $solid + ' ' + $color);
+
+    &::before{
+        content: quote($solid);
+    }
+
+    // index: str-index($solid, "e");
+    // index: str-length($solid);
+    index: to-upper-case($solid);
+    // color:map-get($colors, Primary )
+}
+
+/*
+    Funciones de numeros
+
+    percentage($number)
+    max($number1,$number2,$number3,$number4)
+    floor() redondea hacia abajo
+    ceil() redondea hacia arriba
+    round() redondea a donde este cerca
+    random() numero aleatorio entre 0,1
+*/
+
+@function columns($columns, $total-colums){
+    @return percentage($columns/$total-colums);
+}
+
+body{
+    width: floor(max(10%,48%,14%));
+    height: percentage((random()));
+}
+
+@for $i from 1 through 12 {
+    .cols-#{$i}{
+        width: columns($i, 12);;
+    }
+}
+
+// .cols-4{
+//     width: columns(4, 12);
+// }
+
+/*
+    Funciones de mapas y listas
+
+    nth($list, n)
+    index($list,$value)
+    join($list1,$list2,$list3,$list4,$list5, separador: space | comma)
+    append($list,$value,$separador: space | comma)
+
+    map-get($map, $key)
+    map-keys($map)
+    map-values($map)
+    map-has-key($map, $key)
+    map-merge($map1,$map2)
+    
+
+    text-shadow
+    box-shadow
+*/
+
+// $border: 1px solid red;
+// $border2: 1px dotted green;
+// $color: red;
+
+// body{
+//     border-color: join($border, $border2, comma);
+//     border: append(1px solid, $color); 
+// }
+
+$colors:(
+    primary: green,
+    secondary: red,
+    tertiary: blue
+);
+
+@function color($color-key){
+    @if map-has-key($colors, $color-key)
+    {
+        @return map-get($colors, $color-key);
+    }
+
+    @return null;
+
+}
+
+body{
+    border-color:color(secondary);
+}

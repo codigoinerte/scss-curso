@@ -1,0 +1,93 @@
+body {
+  display: block; }
+
+/*
+    Functions
+*/
+body {
+  font-size: 1.3125em;
+  background-image: url("/assets/img/imagen.jpg"); }
+
+/*
+    Funciones de strings
+    quote($string)
+    unquiote($string)
+    str-length($string)
+    str-index($string,$value)
+*/
+body {
+  border: 1px solid red;
+  index: SOLID; }
+  body::before {
+    content: "solid"; }
+
+/*
+    Funciones de numeros
+
+    percentage($number)
+    max($number1,$number2,$number3,$number4)
+    floor() redondea hacia abajo
+    ceil() redondea hacia arriba
+    round() redondea a donde este cerca
+    random() numero aleatorio entre 0,1
+*/
+body {
+  width: 48%;
+  height: 83.88897%; }
+
+.cols-1 {
+  width: 8.33333%; }
+
+.cols-2 {
+  width: 16.66667%; }
+
+.cols-3 {
+  width: 25%; }
+
+.cols-4 {
+  width: 33.33333%; }
+
+.cols-5 {
+  width: 41.66667%; }
+
+.cols-6 {
+  width: 50%; }
+
+.cols-7 {
+  width: 58.33333%; }
+
+.cols-8 {
+  width: 66.66667%; }
+
+.cols-9 {
+  width: 75%; }
+
+.cols-10 {
+  width: 83.33333%; }
+
+.cols-11 {
+  width: 91.66667%; }
+
+.cols-12 {
+  width: 100%; }
+
+/*
+    Funciones de mapas y listas
+
+    nth($list, n)
+    index($list,$value)
+    join($list1,$list2,$list3,$list4,$list5, separador: space | comma)
+    append($list,$value,$separador: space | comma)
+
+    map-get($map, $key)
+    map-keys($map)
+    map-values($map)
+    map-has-key($map, $key)
+    map-merge($map1,$map2)
+    
+
+    text-shadow
+    box-shadow
+*/
+body {
+  border-color: red; }
